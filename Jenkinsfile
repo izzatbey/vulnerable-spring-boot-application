@@ -33,10 +33,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             agent {
-                docker {
-                    image 'docker:dind'
-                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint='
-                }
+                label 'built-in'
             }
             steps {
                 sh 'docker build -t vulnerable-spring-boot-application:0.1 .'
@@ -44,10 +41,7 @@ pipeline {
         }
         stage('Deploy Docker Image') {
             agent {
-                docker {
-                    image 'docker:dind'
-                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint='
-                }
+                label 'built-in'
             }
             steps {
                 sh 'docker rm --force vulnerable-spring-boot-application'
