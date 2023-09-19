@@ -39,6 +39,8 @@ pipeline {
                 }
             }
             steps {
+                sh 'pwd'
+                sh 'ls -la'
                 sh 'docker build -t vulnerable-spring-boot-application:0.1 .'
             }
         }
