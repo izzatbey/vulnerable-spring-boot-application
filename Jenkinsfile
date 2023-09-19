@@ -35,7 +35,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:dind'
-                    args '--user $(id -u):$(id -g) -v /var/run/docker.sock:/var/run/docker.sock'
+                    args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
@@ -48,7 +48,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:dind'
-                    args '--user $(id -u):$(id -g) -v /var/run/docker.sock:/var/run/docker.sock'
+                    args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
