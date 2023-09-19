@@ -33,21 +33,23 @@ pipeline {
         }
         stage('Build Docker Image') {
             agent {
-                label 'built-in'
+                docker {
+                    image 'docker:dind'
+                    args '--user $(id -u):$(id -g) -v /var/run/docker.sock:/var/run/docker.sock'
+                }
             }
             steps {
-                sh 'pwd'
-                sh 'ls -la'
                 sh 'docker build -t vulnerable-spring-boot-application:0.1 .'
             }
         }
         stage('Deploy Docker Image') {
             agent {
-                label 'built-in'
+                docker {
+                    image 'docker:dind'
+                    args '--user $(id -u):$(id -g) -v /var/run/docker.sock:/var/run/docker.sock'
+                }
             }
             steps {
-                sh 'pwd'
-                sh 'ls -la'
                 sh 'docker rm --force vulnerable-spring-boot-application'
                 sh 'docker run -it --detach -p 8000:8000 --name vulnerable-spring-boot-application vulnerable-spring-boot-application:0.1'
             }
