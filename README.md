@@ -23,6 +23,12 @@ java -jar target/provider-search-0.0.1-SNAPSHOT.jar
 mvn test
 ```
 
+## Using Docker
+```
+docker build -t vulnerable-spring-boot-application:0.1 .
+docker run -it --detach -p 8000:8000 --name vulnerable-spring-boot-application vulnerable-spring-boot-application:0.1
+```
+
 ## Running With Contrast
 
 You will need an account with Contrast https://www.contrastsecurity.com
