@@ -36,6 +36,8 @@ pipeline {
                 label 'built-in'
             }
             steps {
+                sh 'pwd'
+                sh 'ls -la'
                 sh 'docker build -t vulnerable-spring-boot-application:0.1 .'
             }
         }
@@ -44,6 +46,8 @@ pipeline {
                 label 'built-in'
             }
             steps {
+                sh 'pwd'
+                sh 'ls -la'
                 sh 'docker rm --force vulnerable-spring-boot-application'
                 sh 'docker run -it --detach -p 8000:8000 --name vulnerable-spring-boot-application vulnerable-spring-boot-application:0.1'
             }
