@@ -26,9 +26,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             agent {
-                docker {
-                    image 'docker:dind'
-                }
+                label 'built-in'
             }
             steps {
                 sh 'docker build -t vulnerable-spring-boot-application .'
