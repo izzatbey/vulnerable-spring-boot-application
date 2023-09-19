@@ -35,9 +35,6 @@ pipeline {
             }
         }
         stage('Deploy Docker Image') {
-            steps {
-                sh 'docker run -it --rm --detach -p 8000:8000 --name vulnerable-spring-boot-application vulnerable-spring-boot-application'
-            }
             agent {
                 label 'built-in'
             }
