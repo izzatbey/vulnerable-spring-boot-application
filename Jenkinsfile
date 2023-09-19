@@ -35,7 +35,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:dind'
-                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint='
                 }
             }
             steps {
@@ -46,7 +46,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:dind'
-                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint='
                 }
             }
             steps {
