@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy Docker Image') {
             agent {
                 docker {
-                    image 'docker pull kroniak/ssh-client'
+                    image 'kroniak/ssh-client'
                 }
             }
             steps {
