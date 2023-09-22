@@ -35,7 +35,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker:dind'
-                    args '--user root --network host -v /var/run/docker.sock:/var/run/docker.sock DOCKER_OPTS="--insecure-registry 192.168.0.103:5000"'
+                    args '--user root --network host -v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
