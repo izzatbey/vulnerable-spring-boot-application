@@ -51,7 +51,6 @@ pipeline {
             }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: "DeploymentSSHKey", keyFileVariable: 'keyfile')]) {
-                    sh 'ssh-keyscan -t rsa 192.168.0.104 >> ~/.ssh/known_hosts'
                     sh 'ssh -i ${keyfile} jenkins@192.168.0.104'
                     sh 'docker pull 192.168.0.103:5000/vulnerable-spring-boot-application:0.1'
                     sh 'docker rm --force vulnerable-spring-boot-application'
