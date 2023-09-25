@@ -39,8 +39,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -t 192.168.0.103:5000/vulnerable-spring-boot-application:0.1 .'
-                sh 'docker push 192.168.0.103:5000/vulnerable-spring-boot-application:0.1'
+                sh 'docker build -t 192.168.0.109:5000/vulnerable-spring-boot-application:0.1 .'
+                sh 'docker push 192.168.0.109:5000/vulnerable-spring-boot-application:0.1'
             }
         }
         stage('Deploy Docker Image') {
@@ -52,9 +52,9 @@ pipeline {
             }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: "DeploymentSSHKey", keyFileVariable: 'keyfile')]) {
-                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no jenkins@192.168.0.104 docker pull 192.168.0.103:5000/vulnerable-spring-boot-application:0.1'
-                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no jenkins@192.168.0.104 docker rm --force vulnerable-spring-boot-application'
-                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no jenkins@192.168.0.104 docker run -it --detach -p 8000:8000 --name vulnerable-spring-boot-application 192.168.0.103:5000/vulnerable-spring-boot-application:0.1'
+                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.0.100 docker pull 192.168.0.109:5000/vulnerable-spring-boot-application:0.1'
+                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.0.100 docker rm --force vulnerable-spring-boot-application'
+                    sh 'ssh -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.0.100 docker run -it --detach -p 8000:8000 --name vulnerable-spring-boot-application 192.168.0.109:5000/vulnerable-spring-boot-application:0.1'
                 }
             }
         }
